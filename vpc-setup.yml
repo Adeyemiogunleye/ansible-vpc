@@ -14,7 +14,7 @@
         dns_hostnames: true
         tenancy: default
         state: "{{state}}"
-      register: VpvOut
+      register: VpcOut
     - debug:
         var: VpcOut
 
@@ -29,4 +29,4 @@
         map_public: true
         tags:
           Name: Vprofile-pubsub1
-      register: vpc-pubsub1
+      register: vpc_pubsub1
