@@ -29,4 +29,4 @@
         map_public: true
         tags:
           Name: Vprofile-pubsub1
-     register: vpc-pubsub1
+      register: vpc-pubsub1
