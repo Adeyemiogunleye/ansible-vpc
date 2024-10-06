@@ -95,3 +95,12 @@
         tags:
           Name: Vprofile-prisub3
       register: vpc_prisub3
+    
+    - name: Create Internet gateway
+      amazon.aws.ec2_vpc_igw:
+        vpc_id: "{{VpcOut.vpc.id}}"
+        state: present
+        region: "{{region}}"
+        tags:
+          Name: vpro-igw
+      register: vpc_igw
