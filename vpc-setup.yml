@@ -15,8 +15,8 @@
         tenancy: default
         state: "{{state}}"
       register: VpcOut
-    - debug:
-        var: VpcOut
+    #- debug:
+     #   var: VpcOut
 
     - name: Create public Subnet
       amazon.aws.ec2_vpc_subnet:
@@ -30,3 +30,68 @@
         tags:
           Name: Vprofile-pubsub1
       register: vpc_pubsub1
+
+    - name: Create public Subnet2
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{VpcOut.vpc.id}}"
+        cidr: "{{PubSub2Cidr}}"
+        region: "{{region}}"
+        az: "{{zone2}}"
+        state: present
+        map_public: true
+        tags:
+          Name: Vprofile-pubsub2
+      register: vpc_pubsub2
+    
+    - name: Create public Subnet3
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{VpcOut.vpc.id}}"
+        cidr: "{{PubSub3Cidr}}"
+        region: "{{region}}"
+        az: "{{zone3}}"
+        state: present
+        map_public: true
+        tags:
+          Name: Vprofile-pubsub3
+      register: vpc_pubsub3
+    
+    - name: Create private Subnet1
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{VpcOut.vpc.id}}"
+        cidr: "{{PrivSub1Cidr}}"
+        region: "{{region}}"
+        az: "{{zone1}}"
+        state: present
+        map_public: true
+        tags:
+          Name: Vprofile-prisub1
+      register: vpc_prisub1
+    
+    - name: Create private Subnet2
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{VpcOut.vpc.id}}"
+        cidr: "{{PrivSub2Cidr}}"
+        region: "{{region}}"
+        az: "{{zone2}}"
+        state: present
+        map_public: true
+        tags:
+          Name: Vprofile-prisub2
+      register: vpc_prisub2
+    
+    - name: Create private Subnet3
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{VpcOut.vpc.id}}"
+        cidr: "{{PrivSub3Cidr}}"
+        region: "{{region}}"
+        az: "{{zone3}}"
+        state: present
+        map_public: true
+        tags:
+          Name: Vprofile-prisub3
+      register: vpc_prisub3
