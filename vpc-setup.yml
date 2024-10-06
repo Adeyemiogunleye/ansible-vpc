@@ -141,5 +141,20 @@
           - "{{ vpc_prisub3.subnet.id }}"
         routes:
           - dest: 0.0.0.0/0
-            gateway_id: "{{ vpro_natgw.nat.gateway_id }}"
+            gateway_id: "{{ vpro_natgw.nat_gateway_id }}"
       register: private_route_table
+
+    - debug:
+        var: "{{item}}"
+      loop:
+        - VpcOut.vpc.id
+        - vpc_pubsub1.subnet.id
+        - vpc_pubsub2.subnet.id
+        - vpc_pubsub3.subnet.id
+        - vpc_prisub1.subnet.id 
+        - vpc_prisub2.subnet.id 
+        - vpc_prisub3.subnet.id 
+        - vpc_igw.gateway_id 
+        - vpro_natgw.nat_gateway_id 
+        - public_route_table.route_table.id
+        - private_route_table.route_table.id
