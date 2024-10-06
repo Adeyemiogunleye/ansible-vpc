@@ -119,3 +119,27 @@
           - dest: 0.0.0.0/0
             gateway_id: "{{ vpc_igw.gateway_id }}"
       register: public_route_table
+    
+    - name: Create new nat gateway.
+      amazon.aws.ec2_vpc_nat_gateway:
+        state: present
+        subnet_id: "{{vpc_pubsub1.subnet.id}}"
+        region: "{{region}}"
+        wait: true
+        if_exist_do_not_create: true
+      register: vpro_natgw
+    
+    - name: Set up private subnet route table
+      amazon.aws.ec2_vpc_route_table:
+        vpc_id: "{{ VpcOut.vpc.id }}"
+        region: "{{region}}"
+        tags:
+          Name: Vpro_route_table
+        subnets:
+          - "{{ vpc_prisub1.subnet.id }}"
+          - "{{ vpc_prisub2.subnet.id }}"
+          - "{{ vpc_prisub3.subnet.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ vpro_natgw.nat.gateway_id }}"
+      register: private_route_table
