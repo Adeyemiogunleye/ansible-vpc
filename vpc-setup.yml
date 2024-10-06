@@ -15,3 +15,18 @@
         tenancy: default
         state: "{{state}}"
       register: VpvOut
+    - debug:
+        var: VpcOut
+
+    - name: Create public Subnet
+      amazon.aws.ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{VpcOut.vpc.id}}"
+        cidr: "{{PubSub1Cidr}}"
+        region: "{{region}}"
+        az: "{{zone1}}"
+        state: present
+        map_public: true
+        tags:
+          Name: Vprofile-pubsub1
+     register: vpc-pubsub1
