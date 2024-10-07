@@ -40,7 +40,7 @@
         key_name: "vprofile-key"
         region: "{{ region }}"
         instance_type: t2.micro
-        image: ami-0fff1b9a61dec8a5f
+        image: "ami-0fff1b9a61dec8a5f"
         wait: true
         wait_timeout: 300
         tags:
