@@ -31,7 +31,7 @@
           - proto: tcp
             from_port: 22
             to_port: 22
-            cidr_ip: "{{MYIP}}"
+            cidr_ip: 173.34.148.164/32
         register: BastionSG_out
     
     - name: Launch the bastion host instance
