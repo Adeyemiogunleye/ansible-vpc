@@ -28,10 +28,11 @@
           - proto: tcp
             from_ports: 22
             to_ports: 22
-            cidr_ip: "{{173.34.148.164/32}}"
+            cidr_ip: "{{MYIP}}"
         register: BastionSG_out
     
-    - ec2:
+    - name: Launch the bastion host instance
+      amazon.aws.ec2_instance:
         key_name: "vprofile-key"
         region: "{{ region }}"
         instance_type: t2.micro
@@ -43,6 +44,10 @@
           Project: Vprofile
           Owner: Devopsteam
         exact_count: 1
+        count: 
+          Name: "Bastion_host"
+          Project: Vprofile
+          Owner: Devopsteam
         security_group_ids: "{{BastionSG_out.group_id}}"
         vpc_subnet_id: "{{pubsub1id}}"
       register: bastionHost_out
