@@ -23,9 +23,10 @@
       when: key_out.changed
     
     - name: example using security group rule descriptions
-      amazon.aws.ec2_security_group:
+      amazon.aws.ec2_group:
         name: Bastion-host-sg
         description: Allow port 22 from everywhere
+        region: "{{region}}"
         vpc_id: "{{ vpcid }}"
         rules:
           - proto: tcp
