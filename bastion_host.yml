@@ -9,7 +9,7 @@
     - name: Create vprofile ec2key
       ec2_key:
         name: vprofile-key
-        region: "{{region}}"
+        region: "{{ region }}"
       register: key_out
     
     - name: save private key into file bastion-key.pem
@@ -23,7 +23,7 @@
       amazon.aws.ec2_security_group:
         name: Bastion-host-sg
         description: Allow port 22 from everywhere
-        vpc_id: "{{vpcid}}"
+        vpc_id: "{{ vpcid }}"
         rules:
           - proto: tcp
             from_ports: 22
@@ -32,7 +32,7 @@
         register: BastionSG_out
     
     - name: Launch the bastion host instance
-      amazon.aws.ec2_instance:
+      ec2:
         key_name: "vprofile-key"
         region: "{{ region }}"
         instance_type: t2.micro
