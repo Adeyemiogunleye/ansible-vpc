@@ -5,6 +5,9 @@
   tasks:
     - name: import vpc setup variable
       include_vars: Vars/bastion_setup
+
+    - name: import vpc setup variable
+      include_vars: Vars/output_vars
     
     - name: Create vprofile ec2key
       ec2_key:
