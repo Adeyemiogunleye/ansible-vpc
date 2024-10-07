@@ -31,7 +31,7 @@
             cidr_ip: "{{173.34.148.164/32}}"
         register: BastionSG_out
     
-    - name: create instance
+    - name: create bastion host
       amazon.aws.ec2_instance:
         key_name: vprofile-key
         region: "{{region}}"
@@ -44,11 +44,7 @@
           Project: Vprofile
           Owner: Devopsteam
         exact_count: 1
-        count:
-          Name: "Bastion_host"
-          Project: Vprofile
-          Owner: Devopsteam
-        group_id: "{{BastionSG_out.group_id}}"
+        security_group_ids: "{{BastionSG_out.group_id}}"
         vpc_subnet_id: "{{pubsub1id}}"
       register: bastionHost_out
 
