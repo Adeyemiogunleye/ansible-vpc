@@ -45,7 +45,6 @@
           Owner: Devops`team
         exact_count: 1
         count: 1
-          Name: "Bastion_host"
           Project: Vprofile
           Owner: Devopsteam
         group_id: "{{BastionSG_out.group_id}}"
