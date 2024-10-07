@@ -42,12 +42,12 @@
         tags:
           Name: "Bastion_host"
           Project: Vprofile
-          Owner: Devops_team
+          Owner: Devops`team
         exact_count: 1
         count: 1
-          Name: Bastion_host
+          Name: "Bastion_host"
           Project: Vprofile
-          Owner: Devops_team
+          Owner: Devopsteam
         group_id: "{{BastionSG_out.group_id}}"
         vpc_subnet_id: "{{pubsub1id}}"
       register: bastionHost_out
