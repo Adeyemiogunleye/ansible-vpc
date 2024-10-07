@@ -31,7 +31,6 @@
             cidr_ip: "{{173.34.148.164/32}}"
         register: BastionSG_out
     
-    - name: create bastion host
     - ec2:
         key_name: "vprofile-key"
         region: "{{ region }}"
